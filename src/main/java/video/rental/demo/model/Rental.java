@@ -1,4 +1,7 @@
-package video.rental.demo;
+package video.rental.demo.model;
+
+import video.rental.demo.model.video.Video;
+import video.rental.demo.repository.BasicRepository;
 
 import java.util.Date;
 
@@ -21,6 +24,7 @@ public class Rental {
 
 	@OneToOne(fetch = FetchType.EAGER)
 	private Video video;
+
 
 	Rental() {
 	}
@@ -70,15 +74,15 @@ public class Rental {
 	public int getDaysRentedLimit() {
 		int limit = 0;
 		switch (video.getVideoType()) {
-		case Video.VHS:
-			limit = 5;
-			break;
-		case Video.CD:
-			limit = 3;
-			break;
-		case Video.DVD:
-			limit = 2;
-			break;
+			case VHS:
+				limit = 5;
+				break;
+			case CD:
+				limit = 3;
+				break;
+			case DVD:
+				limit = 2;
+				break;
 		}
 		return limit;
 	}
@@ -92,4 +96,5 @@ public class Rental {
 		}
 		return (int) (diff / (1000 * 60 * 60 * 24)) + 1;
 	}
+
 }

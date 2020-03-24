@@ -1,4 +1,4 @@
-package video.rental.demo;//package video.rental.demo;
+package video.rental.demo.ui;//package video.rental.demo;
 //
 //import java.awt.EventQueue;
 //
@@ -11,7 +11,7 @@ package video.rental.demo;//package video.rental.demo;
 //import javax.swing.ScrollPaneConstants;
 //import javax.swing.SpinnerListModel;
 //
-//import video.rental.demo.Rating;
+//import video.rental.demo.model.Rating;
 //
 //import javax.swing.JSpinner;
 //import javax.swing.JSeparator;
@@ -157,7 +157,7 @@ package video.rental.demo;//package video.rental.demo;
 //		int code = Integer.parseInt(userCodeField.getText().toString());
 //
 //		String result = ...;
-//		
+//
 //		textArea.append(result);
 //	}
 //
@@ -231,7 +231,7 @@ package video.rental.demo;//package video.rental.demo;
 //			videoRating = Rating.FIFTEEN;
 //		else // Eighteen
 //			videoRating = Rating.EIGHTEEN;
-//		
+//
 //		// ...
 //	}
 //

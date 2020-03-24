@@ -12,7 +12,7 @@ public enum PersistenceManager {
 	private PersistenceManager() {
 		// "video" was the value of the name attribute of the
 		// persistence-unit element.
-	    emFactory = Persistence.createEntityManagerFactory("video");
+		emFactory = Persistence.createEntityManagerFactory("video");
 	}
 	
 	public EntityManager getEntityManager() {
