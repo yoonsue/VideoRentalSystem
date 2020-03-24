@@ -17,16 +17,12 @@ import java.util.Scanner;
 
 public class CmdUI implements VideoRentalUI {
 	private Repository repo;
-	private VideoService videoService;
-	private CustomerService customerService;
 
 	private static Scanner scanner = new Scanner(System.in);
 
 	// NEW CONSTRUCTOR
-	public CmdUI(Repository repo, VideoService videoService, CustomerService customerService) {
+	public CmdUI(Repository repo) {
 		this.repo = repo;
-		this.videoService = videoService;
-		this.customerService = customerService;
 	}
 
 	public void start() {
@@ -158,7 +154,8 @@ public class CmdUI implements VideoRentalUI {
 		if (foundCustomer == null) {
 			System.out.println("No customer found");
 		} else {
-			String result = CustomerService.getReport(foundCustomer);
+		    CustomerService customerService = new CustomerService(foundCustomer);
+			String result = customerService.getReport();
 			System.out.println(result);
 		}
 	}
@@ -182,7 +179,8 @@ public class CmdUI implements VideoRentalUI {
 		if (foundVideo.isRented() == true)
 			return;
 
-		Boolean status = videoService.rentFor(videoTitle, foundCustomer);
+		VideoService videoService = new VideoService(foundVideo);
+		Boolean status = videoService.rentFor(foundCustomer);
 		if (status == true) {
 			repo.saveVideo(foundVideo);
 			repo.saveCustomer(foundCustomer);
@@ -212,10 +210,10 @@ public class CmdUI implements VideoRentalUI {
 		String title = scanner.next();
 
 		System.out.println("Enter video type( 1 for VHD, 2 for CD, 3 for DVD ):");
-		VideoType videoType = VideoType.values()[scanner.nextInt()];
+		VideoType videoType = VideoType.values()[scanner.nextInt()-1];
 
 		System.out.println("Enter price code( 1 for Regular, 2 for New Release 3 for Children ):");
-		PriceCode priceCode = PriceCode.values()[scanner.nextInt()];
+		PriceCode priceCode = PriceCode.values()[scanner.nextInt()-1];
 
 		System.out.println("Enter video rating( 1 for 12, 2 for 15, 3 for 18 ):");
 		int videoRating = scanner.nextInt();
@@ -250,10 +248,10 @@ public class CmdUI implements VideoRentalUI {
 //			String title = scanner.next();
 //
 //			System.out.println("Enter video type( 1 for VHD, 2 for CD, 3 for DVD ):");
-//			VideoType videoType = VideoType.values()[scanner.nextInt()];
+//			VideoType videoType = VideoType.values()[scanner.nextInt()-1];
 //
 //			System.out.println("Enter price code( 1 for Regular, 2 for New Release 3 for Children ):");
-//			PriceCode priceCode = PriceCode.values()[scanner.nextInt()];
+//			PriceCode priceCode = PriceCode.values()[scanner.nextInt()-1];
 //
 //			System.out.println("Enter video rating( 1 for 12, 2 for 15, 3 for 18 ):");
 //			int videoRating = scanner.nextInt();

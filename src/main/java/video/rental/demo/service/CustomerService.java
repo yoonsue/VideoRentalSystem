@@ -8,13 +8,13 @@ import video.rental.demo.repository.Repository;
 import java.util.List;
 
 public class CustomerService {
-    private Repository repository;
+    private Customer customer;
 
-    public CustomerService(Repository repository) {
-        this.repository = repository;
+    public CustomerService(Customer customer) {
+        this.customer = customer;
     }
 
-    public static String getReport(Customer customer) {
+    public String getReport() {
         String result = "Customer Report for " + customer.getName() + "\n";
 
         List<Rental> rentals = customer.getRentals();

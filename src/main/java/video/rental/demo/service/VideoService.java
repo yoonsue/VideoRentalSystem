@@ -11,16 +11,15 @@ import java.util.Calendar;
 import java.util.List;
 
 public class VideoService {
-    private Repository repository;
+    private Video video;
 
-    public VideoService(Repository repository) {
-        this.repository = repository;
+    public VideoService(Video video) {
+        this.video = video;
     }
 
     // VideoService
-    public boolean rentFor(String videoTitle, Customer customer) {
-        Video video = repository.findVideoByTitle(videoTitle);
-        if (!isUnderAge(videoTitle, customer)) {
+    public boolean rentFor(Customer customer) {
+        if (!isUnderAge(customer)) {
             video.setRented(true);
             Rental rental = new Rental(video);
             List<Rental> customerRentals = customer.getRentals();
@@ -31,8 +30,7 @@ public class VideoService {
         return false;
     }
 
-    public boolean isUnderAge(String videoTitle, Customer customer) {
-        Video video = repository.findVideoByTitle(videoTitle);
+    public boolean isUnderAge(Customer customer) {
         try {
             // calculate customer's age in years and months
 
