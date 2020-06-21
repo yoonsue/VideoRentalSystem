@@ -1,9 +1,9 @@
 package video.rental.demo.service;
 
-import video.rental.demo.model.Customer;
-import video.rental.demo.model.Rental;
-import video.rental.demo.model.video.PriceCode;
-import video.rental.demo.repository.Repository;
+import video.rental.demo.domain.Customer;
+import video.rental.demo.domain.Rental;
+import video.rental.demo.domain.video.PriceCode;
+import video.rental.demo.domain.video.Video;
 
 import java.util.List;
 

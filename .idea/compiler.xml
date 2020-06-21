@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="VideoRental_Initial" target="1.5" />
+      <module name="VideoRental_Initial" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>

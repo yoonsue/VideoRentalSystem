@@ -1,18 +1,40 @@
 package video.rental.demo;
 
-import video.rental.demo.repository.BasicRepository;
-import video.rental.demo.ui.VideoRentalUIController;
+import video.rental.demo.application.Interactor;
+import video.rental.demo.application.SampleGenerator;
+import video.rental.demo.domain.Repository;
+import video.rental.demo.infrastructure.RepositoryMemImpl;
+import video.rental.demo.presentation.CmdUI;
+import video.rental.demo.presentation.GraphicUI;
+import video.rental.demo.presentation.VideoRentalUI;
 
 public class Main
 {
-	private static VideoRentalUIController uiContrloller;
 
 	public static void main(String[] args)
 	{
-		BasicRepository repository = new BasicRepository();
-		uiContrloller = new VideoRentalUIController(repository, "cmd");
-		uiContrloller.start();
+		Repository repository = new RepositoryMemImpl();
+		SampleGenerator sampleDataGenerator = new SampleGenerator(repository);
+		sampleDataGenerator.generateSamples();
+
+		Interactor interactor = new Interactor(repository);
+
+		VideoRentalUI ui = null;
+		String uiString = "CMD";
+		switch (uiString) {
+			case "CMD":
+				ui = new CmdUI(interactor);
+				break;
+			case "GRAPHIC":
+				ui = new GraphicUI(interactor);
+				break;
+			default:
+				ui = new GraphicUI(interactor);
+		}
+
+		ui.start();
 	}
+
 }
 
 
